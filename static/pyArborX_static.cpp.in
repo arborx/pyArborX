@@ -1,0 +1,16 @@
+#include <pybind11/pybind11.h>
+
+#include "config.hpp"
+@MODULE_INCLUDES@
+
+
+namespace py = pybind11;
+
+PYBIND11_MODULE(pyArborX, m) {
+  m.attr("__name__") = "pyArborX";
+
+  m.def("printConfig", []() { Kokkos::print_configuration(std::cout); });
+
+  @MODULE_GENERATORS@;
+
+}

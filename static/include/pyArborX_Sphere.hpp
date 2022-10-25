@@ -12,10 +12,10 @@ namespace pyArborX
 {
 namespace helper
 {
-  std::string pyPrintSphere(ArborX::Sphere const &s);
+std::string pyPrintSphere(ArborX::Sphere const &s);
 }
 
 void generateSphereWrapper(py::module &m);
-}
+} // namespace pyArborX
 
 #endif

@@ -17,7 +17,7 @@ std::string pyPrintPoint(ArborX::Point const &p)
   return "<pyArborX::Point with " + std::to_string(p[0]) + " " +
          std::to_string(p[1]) + " " + std::to_string(p[2]) + ">";
 }
-}
+} // namespace helper
 
 void generatePointWrapper(py::module &m)
 {

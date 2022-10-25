@@ -2,6 +2,7 @@
 #define PYARBORX_SPHERE_CPP
 
 #include "pyArborX_Sphere.hpp"
+
 #include "pyArborX_Point.hpp"
 
 namespace py = pybind11;
@@ -15,7 +16,7 @@ std::string pyPrintSphere(ArborX::Sphere const &s)
   return "<pyArborX::Sphere with centroid \n" + pyPrintPoint(s.centroid()) +
          "and radius \n" + std::to_string(s.radius()) + ">";
 }
-}
+} // namespace helper
 
 void generateSphereWrapper(py::module &m)
 {
@@ -30,12 +31,11 @@ void generateSphereWrapper(py::module &m)
            py::return_value_policy::reference)
       .def("centroid", py::overload_cast<>(&ArborX::Sphere::centroid),
            py::return_value_policy::reference)
-      .def("radius",
-           py::overload_cast<>(&ArborX::Sphere::radius, py::const_),
+      .def("radius", py::overload_cast<>(&ArborX::Sphere::radius, py::const_),
            py::return_value_policy::move)
 
-      .def("__repr__",
-           py::overload_cast<ArborX::Sphere const &>(&pyArborX::helper::pyPrintSphere));
+      .def("__repr__", py::overload_cast<ArborX::Sphere const &>(
+                           &pyArborX::helper::pyPrintSphere));
 }
 } // end of namespace pyArborX
 

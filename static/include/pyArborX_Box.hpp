@@ -12,10 +12,10 @@ namespace pyArborX
 {
 namespace helper
 {
-  std::string pyPrintBox(ArborX::Box const &b);
+std::string pyPrintBox(ArborX::Box const &b);
 }
 
 void generateBoxWrapper(py::module &m);
-}
+} // namespace pyArborX
 
 #endif

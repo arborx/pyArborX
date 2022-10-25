@@ -2,6 +2,7 @@
 #define PYARBORX_BOX_CPP
 
 #include "pyArborX_Box.hpp"
+
 #include "pyArborX_Point.hpp"
 
 namespace py = pybind11;
@@ -15,7 +16,7 @@ std::string pyPrintBox(ArborX::Box const &b)
   return "<pyArborX::Box with min Corner \n" + pyPrintPoint(b.minCorner()) +
          "and max Corner \n" + pyPrintPoint(b.maxCorner()) + ">";
 }
-}
+} // namespace helper
 
 void generateBoxWrapper(py::module &m)
 {
@@ -40,8 +41,8 @@ void generateBoxWrapper(py::module &m)
            py::overload_cast<ArborX::Box const &>(&ArborX::Box::operator+=),
            py::arg("ArborX::Box"), py::return_value_policy::reference)
 
-      .def("__repr__",
-           py::overload_cast<ArborX::Box const &>(&pyArborX::helper::pyPrintBox));
+      .def("__repr__", py::overload_cast<ArborX::Box const &>(
+                           &pyArborX::helper::pyPrintBox));
 }
 } // end of namespace pyArborX
 

@@ -12,10 +12,10 @@ namespace pyArborX
 {
 namespace helper
 {
-  std::string pyPrintPoint(ArborX::Point const &p);
+std::string pyPrintPoint(ArborX::Point const &p);
 }
 
 void generatePointWrapper(py::module &m);
-}
+} // namespace pyArborX
 
 #endif

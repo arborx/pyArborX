@@ -10,4 +10,5 @@
 
 PYBIND11_MAKE_OPAQUE(std::vector<ArborX::Point>);
 PYBIND11_MAKE_OPAQUE(std::vector<ArborX::Box>);
+PYBIND11_MAKE_OPAQUE(std::vector<ArborX::Sphere>);
 #endif

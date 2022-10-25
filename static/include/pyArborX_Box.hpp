@@ -8,11 +8,14 @@
 
 namespace py = pybind11;
 
-namespace pyArborXHelper
+namespace pyArborX
 {
-std::string pyPrintBox(ArborX::Box const &b);
+namespace helper
+{
+  std::string pyPrintBox(ArborX::Box const &b);
 }
 
 void generateBoxWrapper(py::module &m);
+}
 
 #endif

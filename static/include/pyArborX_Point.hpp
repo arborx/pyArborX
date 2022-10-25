@@ -8,11 +8,14 @@
 
 namespace py = pybind11;
 
-namespace pyArborXHelper
+namespace pyArborX
 {
-std::string pyPrintPoint(ArborX::Point const &p);
+namespace helper
+{
+  std::string pyPrintPoint(ArborX::Point const &p);
 }
 
 void generatePointWrapper(py::module &m);
+}
 
 #endif

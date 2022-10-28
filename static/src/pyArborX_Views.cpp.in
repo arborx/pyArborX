@@ -16,11 +16,7 @@ void generate@VIEW_NAME@Wrapper(py::module & m) {
     py::class_<@VIEW_TYPE@>(m,"@VIEW_NAME@")
       .def(py::init<>())
       .def(py::init([](std::string label,size_t size){
-            return new @VIEW_TYPE@{Kokkos::view_alloc(
-                                                     ExecutionSpace{},
-                                                     Kokkos::WithoutInitializing,
-                                                     label
-                                                     ),size};}))
+            return new @VIEW_TYPE@{label,size};}))
 
     .def("size",[](@VIEW_TYPE@& p){return p.size();})
     .def("__getitem__",

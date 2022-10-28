@@ -19,5 +19,4 @@ target_include_directories(pyArborX_static PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_include_directories(pyArborX_static PUBLIC ${PROJECT_BINARY_DIR}/generated_files)
 target_link_libraries(pyArborX_static PUBLIC ArborX::ArborX)
 set_target_properties(pyArborX_static PROPERTIES
-         LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../pyArborX)
-
+  LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/pyArborX)

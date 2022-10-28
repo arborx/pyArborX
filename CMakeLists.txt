@@ -7,7 +7,3 @@ find_package(pybind11 REQUIRED)
 
 #add the static bindings for non-template classes/generated classes
 add_subdirectory(static)
-
-#adding install instructions for pip
-file(COPY ${PROJECT_SOURCE_DIR}/setup.py DESTINATION ${PROJECT_BINARY_DIR})
-file(COPY ${PROJECT_SOURCE_DIR}/__init__.py DESTINATION ${PROJECT_BINARY_DIR}/pyArborX)

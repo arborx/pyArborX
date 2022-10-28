@@ -34,6 +34,8 @@ void generatePointWrapper(py::module &m)
       .def("__setitem__",
            [](ArborX::Point &p, int idx, double val) { p[idx] = val; })
 
+      .def("cpp_type", []() { return "ArborX::Point"; })
+
       .def("__repr__", py::overload_cast<ArborX::Point const &>(
                            &pyArborX::helper::pyPrintPoint));
 }

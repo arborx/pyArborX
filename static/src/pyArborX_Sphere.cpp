@@ -34,6 +34,8 @@ void generateSphereWrapper(py::module &m)
       .def("radius", py::overload_cast<>(&ArborX::Sphere::radius, py::const_),
            py::return_value_policy::move)
 
+      .def("cpp_type", []() { return "ArborX::Sphere"; })
+
       .def("__repr__", py::overload_cast<ArborX::Sphere const &>(
                            &pyArborX::helper::pyPrintSphere));
 }

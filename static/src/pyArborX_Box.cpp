@@ -41,6 +41,8 @@ void generateBoxWrapper(py::module &m)
            py::overload_cast<ArborX::Box const &>(&ArborX::Box::operator+=),
            py::arg("ArborX::Box"), py::return_value_policy::reference)
 
+      .def("cpp_type", []() { return "ArborX::Box"; })
+
       .def("__repr__", py::overload_cast<ArborX::Box const &>(
                            &pyArborX::helper::pyPrintBox));
 }

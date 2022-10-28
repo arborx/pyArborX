@@ -1,10 +1,11 @@
 project(pyArborX_static LANGUAGES CXX)
 
 #choose modules that should be included in the build
-set(PY_STATIC_MODULES Point Box Sphere)
+set(pyArborX_STATIC_GEOMETRY_MODULES Point Box Sphere)
+set(pyArborX_STATIC_UTILITY_MODULES Experimental)
 
 # get source files for selected static modules
-foreach(PY_MODULE IN LISTS PY_STATIC_MODULES)
+foreach(PY_MODULE IN LISTS pyArborX_STATIC_GEOMETRY_MODULES pyArborX_STATIC_UTILITY_MODULES)
   list(APPEND PY_SRC ${PROJECT_SOURCE_DIR}/src/pyArborX_${PY_MODULE}.cpp)
   list(APPEND MODULE_INCLUDES "\n#include \"pyArborX_${PY_MODULE}.hpp\"" )
   list(APPEND MODULE_GENERATORS "\npyArborX::generate${PY_MODULE}Wrapper(m)")

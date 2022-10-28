@@ -11,7 +11,8 @@
 **/*.egg-info
 tmp/
 .vscode/
-./build
+build
+*.so
 
 # Testing and coverage results
 .coverage

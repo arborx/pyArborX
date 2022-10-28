@@ -1,0 +1,5 @@
+*.pyc
+**/pk_cpp/
+**/*.egg-info
+*.so
+**/__pycache__/

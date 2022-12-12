@@ -5,8 +5,8 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(pyArborX, m) {
-  m.attr("__name__") = "pyArborX";
+PYBIND11_MODULE(pyArborX_static, m) {
+  m.attr("__name__") = "pyArborX_static";
 
   m.def("printConfig", []() { Kokkos::print_configuration(std::cout); });
 

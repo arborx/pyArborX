@@ -2,7 +2,7 @@ project(pyArborX_static LANGUAGES CXX)
 
 #choose modules that should be included in the build
 set(pyArborX_STATIC_GEOMETRY_MODULES Point Box Sphere)
-set(pyArborX_STATIC_UTILITY_MODULES Experimental)
+set(pyArborX_STATIC_UTILITY_MODULES Experimental Util BVH)
 
 # get source files for selected static modules
 foreach(PY_MODULE IN LISTS pyArborX_STATIC_GEOMETRY_MODULES pyArborX_STATIC_UTILITY_MODULES)

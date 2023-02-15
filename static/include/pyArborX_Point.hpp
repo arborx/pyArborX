@@ -3,10 +3,9 @@
 
 #include <ArborX_Point.hpp>
 
-#include <pybind11/pybind11.h>
-#include <string.h>
+#include <string>
 
-namespace py = pybind11;
+#include <pybind11/pybind11.h>
 
 namespace pyArborX
 {
@@ -15,7 +14,7 @@ namespace helper
 std::string pyPrintPoint(ArborX::Point const &p);
 }
 
-void generatePointWrapper(py::module &m);
+void generatePointWrapper(pybind11::module &m);
 } // namespace pyArborX
 
 #endif

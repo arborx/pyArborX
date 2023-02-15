@@ -3,12 +3,10 @@
 
 #include <pybind11/pybind11.h>
 
-namespace py = pybind11;
-
 namespace pyArborX
 {
 
-void generate@VIEW_NAME@Wrapper(py::module & m);
+void generate@VIEW_NAME@Wrapper(pybind11::module &m);
 
 }
 #endif

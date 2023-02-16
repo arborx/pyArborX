@@ -6,6 +6,8 @@
 namespace pyArborX
 {
 
+namespace helper
+{
 Predicates generateWithinQueries_device(ExecutionSpace execution_space,
                                         Primitives query_pts_view,
                                         int n_queries, float radius)
@@ -22,12 +24,13 @@ Predicates generateWithinQueries_device(ExecutionSpace execution_space,
 
   return within_queries;
 }
+} // namespace helper
 
 void generateUtilWrapper(pybind11::module &m)
 {
   namespace py = pybind11;
 
-  m.def("generateWithinQueries_device", &generateWithinQueries_device,
+  m.def("generateWithinQueries_device", &helper::generateWithinQueries_device,
         py::arg("ExecutionSpace"), py::arg("Primitives"), py::arg("size"),
         py::arg("radius"));
 }

@@ -1,8 +1,11 @@
 #ifndef PYARBORX_@VIEW_NAME@_CPP
 #define PYARBORX_@VIEW_NAME@_CPP
 
-#include <ArborX_@GEOMETRY@.hpp>
+#include <ArborX_Box.hpp>
+#include <ArborX_Point.hpp>
+#include <ArborX_Sphere.hpp>
 
+#include "config.hpp"
 #include <pybind11/pybind11.h>
 
 @VIEW_INCLUDE@
@@ -10,35 +13,35 @@
 namespace pyArborX
 {
 
-void generate@VIEW_NAME@Wrapper(pybind11::module &m)
-{
-  namespace py = pybind11;
+  void generate@VIEW_NAME@Wrapper(pybind11::module & m)
+  {
+    namespace py = pybind11;
 
-  py::class_<@VIEW_TYPE@>(m, "@VIEW_NAME@")
-      .def(py::init<>())
-      .def(py::init([](std::string label, size_t size) {
-        return new @VIEW_TYPE@{label, size};
-      }))
+    py::class_<@VIEW_TYPE@>(m, "@VIEW_NAME@")
+        .def(py::init<>())
+        .def(py::init([](std::string label, size_t size) {
+          return new @VIEW_TYPE@{label, size};
+        }))
 
-      .def("size", [](@VIEW_TYPE@ &p) { return p.size(); })
-      .def("__getitem__",
-           [](@VIEW_TYPE@ &p, long unsigned int idx) { return p(idx); })
-      .def("__setitem__", [](@VIEW_TYPE@ &p, long unsigned int idx,
-                             @VIEW_BASE_TYPE@ val) { p(idx) = val; })
-      .def("cpp_type", []() { return "@VIEW_TYPE@"; });
+        .def("size", [](@VIEW_TYPE@ &p) { return p.size(); })
+        .def("__getitem__",
+             [](@VIEW_TYPE@ &p, long unsigned int idx) { return p(idx); })
+        .def("__setitem__", [](@VIEW_TYPE@ &p, long unsigned int idx,
+                               @VIEW_BASE_TYPE@ val) { p(idx) = val; })
+        .def("cpp_type", []() { return "@VIEW_TYPE@"; });
 
-  // binding as member functions to avoid even more overloading problems
-  m.def(
-      "create_mirror_view",
-      [](@VIEW_TYPE@ const &src) { return Kokkos::create_mirror_view(src); },
-      py::arg("src"));
+    // binding as member functions to avoid even more overloading problems
+    m.def(
+        "create_mirror_view",
+        [](@VIEW_TYPE@ const &src) { return Kokkos::create_mirror_view(src); },
+        py::arg("src"));
 
-  m.def(
-      "deep_copy",
-      [](@VIEW_TYPE@ const &dest,
-         decltype(create_mirror_view(std::declval<@VIEW_TYPE@>()))
-             const &src) { return Kokkos::deep_copy(dest, src); },
-      py::arg("dest"), py::arg("src"));
-}
+    m.def(
+        "deep_copy",
+        [](@VIEW_TYPE@ const &dest,
+           decltype(create_mirror_view(std::declval<@VIEW_TYPE@>()))
+               const &src) { return Kokkos::deep_copy(dest, src); },
+        py::arg("dest"), py::arg("src"));
+  }
 } // namespace pyArborX
 #endif

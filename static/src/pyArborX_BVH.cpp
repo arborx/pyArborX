@@ -25,6 +25,7 @@ void generateBVHWrapper(pybind11::module &m)
       .def(py::init<ExecutionSpace, Primitives, SpaceFillingCurve>(),
            py::arg("ExecutionSpace"), py::arg("Primitives"),
            py::arg("SpaceFillingCurve") = SpaceFillingCurve())
+      .def("size", &BVH::size)
 
       .def("query",
            &BVH::query<ExecutionSpace const &, Predicates const &,

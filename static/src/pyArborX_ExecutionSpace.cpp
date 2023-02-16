@@ -10,10 +10,13 @@ namespace pyArborX
 
 void generateExecutionSpaceWrapper(pybind11::module &m)
 {
-  py::class_<ExecutionSpace>(m, "ExecutionSpace")
-      .def(py::init<>([]() { return new ExecutionSpace{}; }))
+  namespace py = pybind11;
 
-      .def("fence", py::overload_cast<>(&ExecutionSpace::fence, py::const_));
+  py::class_<ExecutionSpace>(m, "ExecutionSpace").def(py::init<>([]() {
+    return new ExecutionSpace{};
+  }));
+
+  // .def("fence", py::overload_cast<>(&ExecutionSpace::fence, py::const_));
 }
 
 } // namespace pyArborX

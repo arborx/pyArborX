@@ -3,6 +3,8 @@
 
 #include "pyArborX_ExecutionSpace.hpp"
 
+#include "config.hpp"
+
 namespace pyArborX
 {
 

@@ -2,7 +2,7 @@ project(pyArborX_static LANGUAGES CXX)
 
 #choose modules that should be included in the build
 set(pyArborX_STATIC_GEOMETRY_MODULES Point Box Sphere)
-set(pyArborX_STATIC_UTILITY_MODULES Experimental Util BVH)
+set(pyArborX_STATIC_UTILITY_MODULES BVH ExecutionSpace Experimental Util)
 
 # get source files for selected static modules
 foreach(PY_MODULE IN LISTS pyArborX_STATIC_GEOMETRY_MODULES pyArborX_STATIC_UTILITY_MODULES)
@@ -13,7 +13,8 @@ endforeach()
 
 #generate bindings for views of ArborX types
 set(LAYOUTS LayoutLeft LayoutRight)
-set(MEMORYSPACES Default HostSpace)
+# set(MEMORYSPACES Default HostSpace)
+set(MEMORYSPACES Default)
 file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/generated_files)
 
 foreach(GEOMETRY IN LISTS pyArborX_STATIC_GEOMETRY_MODULES)
@@ -45,6 +46,6 @@ configure_file(pyArborX_static.cpp.in generated_files/pyArborX_static.cpp)
 PYBIND11_ADD_MODULE(pyArborX_static generated_files/pyArborX_static.cpp ${pyArborX_SRC})
 target_include_directories(pyArborX_static PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_include_directories(pyArborX_static PUBLIC ${PROJECT_BINARY_DIR}/generated_files)
-target_link_libraries(pyArborX_static PUBLIC ArborX::ArborX)
+target_link_libraries(pyArborX_static PUBLIC ArborX::ArborX INTERFACE Kokkos::kokkos)
 set_target_properties(pyArborX_static PROPERTIES
   LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/pyArborX)

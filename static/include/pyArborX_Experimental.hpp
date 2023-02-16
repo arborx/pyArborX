@@ -5,12 +5,11 @@
 
 #include <pybind11/pybind11.h>
 
-namespace py = pybind11;
-
 namespace pyArborX
 {
 
-void generateExperimentalWrapper(py::module &m);
+void generateExperimentalWrapper(pybind11::module &m);
 
 } // namespace pyArborX
+
 #endif

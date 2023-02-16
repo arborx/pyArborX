@@ -1,15 +1,16 @@
+#include <Kokkos_Core.hpp>
+
 #include <pybind11/pybind11.h>
 
 @MODULE_INCLUDES@
 
-
-namespace py = pybind11;
-
-PYBIND11_MODULE(pyArborX_static, m) {
+PYBIND11_MODULE(pyArborX_static, m)
+{
   m.attr("__name__") = "pyArborX_static";
 
+  m.def("initialize", []() { Kokkos::initialize(); });
   m.def("printConfig", []() { Kokkos::print_configuration(std::cout); });
+  m.def("finalize", &Kokkos::finalize);
 
   @MODULE_GENERATORS@;
-
 }

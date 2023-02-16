@@ -5,8 +5,6 @@
 
 #include "pyArborX_Point.hpp"
 
-namespace py = pybind11;
-
 namespace pyArborX
 {
 namespace helper
@@ -18,8 +16,9 @@ std::string pyPrintBox(ArborX::Box const &b)
 }
 } // namespace helper
 
-void generateBoxWrapper(py::module &m)
+void generateBoxWrapper(pybind11::module &m)
 {
+  namespace py = pybind11;
 
   py::class_<ArborX::Box>(m, "Box")
       .def(py::init<>())

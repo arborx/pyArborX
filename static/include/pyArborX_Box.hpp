@@ -3,10 +3,9 @@
 
 #include <ArborX_Box.hpp>
 
-#include <pybind11/pybind11.h>
-#include <string.h>
+#include <string>
 
-namespace py = pybind11;
+#include <pybind11/pybind11.h>
 
 namespace pyArborX
 {
@@ -15,7 +14,8 @@ namespace helper
 std::string pyPrintBox(ArborX::Box const &b);
 }
 
-void generateBoxWrapper(py::module &m);
+void generateBoxWrapper(pybind11::module &m);
+
 } // namespace pyArborX
 
 #endif

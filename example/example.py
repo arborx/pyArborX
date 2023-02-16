@@ -2,39 +2,42 @@ import pyArborX
 
 
 def run():
-    num_primitives = 100
-    num_queries = 100
+    num_points = 100
 
-    radius = 1.0
+    radius = 2.0
 
     # Type alias
     ExecutionSpace = pyArborX.ExecutionSpace
     Primitives = pyArborX.Kokkos_View_ArborX_Point_1D_Default
+    Point = pyArborX.Point
     BVH = pyArborX.BVH
 
     execution_space = ExecutionSpace()
 
-    primitives = Primitives("primitives", num_primitives)
-    print(primitives.size())
+    primitives = Primitives("primitives", num_points)
+    for i in range(primitives.size()):
+        primitives[i] = Point(i, i, i)
+
     queries = pyArborX.generateWithinQueries_device(
         execution_space,
-        Primitives("query_points", num_queries),
-        num_queries,
+        primitives,
+        num_points,
         radius,
     )
-    print(queries.size())
     #  execution_space.fence()
 
     bvh = BVH(execution_space, primitives)
-    print(bvh.size())
 
     offsets = pyArborX.intView1D("offsets", 0)
     indices = pyArborX.intView1D("indices", 0)
 
     bvh.query(execution_space, queries, indices, offsets)
 
-    print(offsets.size())
-    print(indices.size())
+    for i in range(offsets.size()-1):
+        print("[%d]" % i, end="")
+        for j in range(offsets[i], offsets[i+1]):
+            print(" %d" % indices[j], end="")
+        print("")
 
     # As the Python garbage collector does not respect Kokkos finalize at this
     # time, explicitly delete all ArborX structures
